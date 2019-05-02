@@ -1,0 +1,110 @@
+##nano window##
+
+Ethernet Header:
+ 24 05 88 3F 0D 42        Destination hardware address
+ 18 CF 5E 94 3D A3        Source hardware address
+ 08 00                    Lenght/Type
+
+IPv4 Header:
+ 45                       Version / Header length
+ 00                       ToS / DFS
+ 00 1F                    Total length
+ EE 30                    ID
+ 40 00                    Flags / Fragment offset
+ 40                       TTL
+ 06                       Protocol
+ 40 C9                    Checksum
+ C0 A8 56 E6              Source address
+ C0 A8 56 01              Destination address
+
+TCP Header:
+ 80 59                    Source port
+ 00 50                    Destination port
+ 6B 8E 0D 3F              Sequence number
+ 00 00 00 00              Acknowledgement number
+ 50                       Header length
+ 02                       Flags
+ F4 E6                    Window
+ DA 46                    Checksum
+ 00 00                    Urgent pointer
+
+Payload or Trailer:
+ 05 05 05
+
+##run of lazy.sh##
+
+root@kali:~# ./lazy.sh
+starting
+what payload to use?
+> 
+05 05 05
+eth0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        ether 6c:c2:17:7a:ff:36  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 1282  bytes 109726 (107.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1282  bytes 109726 (107.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.86.230  netmask 255.255.255.0  broadcast 192.168.86.255
+        inet6 fe80::2a33:e534:2f4a:58b8  prefixlen 64  scopeid 0x20<link>
+        ether 18:cf:5e:94:3d:a3  txqueuelen 1000  (Ethernet)
+        RX packets 26968  bytes 22874573 (21.8 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 15323  bytes 2512570 (2.3 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+what is your ip?
+>
+192.168.86.230
+what is your mac?
+>
+18:cf:5e:94:3d:a3
+what ip is the server at?
+> 
+192.168.86.1 
+PING 192.168.86.1 (192.168.86.1) 56(84) bytes of data.
+64 bytes from 192.168.86.1: icmp_seq=1 ttl=64 time=4.93 ms
+64 bytes from 192.168.86.1: icmp_seq=2 ttl=64 time=5.42 ms
+64 bytes from 192.168.86.1: icmp_seq=3 ttl=64 time=4.48 ms
+64 bytes from 192.168.86.1: icmp_seq=4 ttl=64 time=3.72 ms
+
+--- 192.168.86.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 3.722/4.641/5.423/0.631 ms
+Address                  HWtype  HWaddress           Flags Mask            Iface
+testwifi.here            ether   24:05:88:3f:0d:42   C                     wlan0
+enter the server mac address
+>
+24:05:88:3f:0d:42
+made pcap
+end
+
+
+##files made durning run##
+
+root@kali:~/project# ls
+lazy.sh  transfer.sh
+root@kali:~/project# ./lazy.sh 
+...snip...
+root@kali:~/project# ls
+it  lazy.sh  transfer.sh  werk.pcap
+
+
+##send and ACK##
+
+root@host:~/project# hexinject -s -i wlan0 -c 2 -f "port 12345"
+18 CF 5E 94 3D A3 B8 27 EB 9C E1 F3 08 00 45 00 00 2E EE 30 40 00 40 06 C9 43 C0 A8 01 03 C0 A8 01 02 30 39 30 39 6B 8E 0D 3F 00 00 00 00 50 02 F4 E6 2C 4D 00 00 66 06 66 06 66 06
+B8 27 EB 9C E1 F3 18 CF 5E 94 3D A3 08 00 45 00 00 28 33 3D 40 00 40 06 84 3D C0 A8 01 02 C0 A8 01 03 30 39 30 39 00 00 00 00 6B 8E 0D 46 50 14 00 00 53 34 00 00
+root@host:~/project# hexinject -s -i wlan0 -c 2 -f "port 12345"
+B8 27 EB 9C E1 F3 18 CF 5E 94 3D A3 08 00 45 00 00 2A EE 30 40 00 40 06 C9 47 C0 A8 01 02 C0 A8 01 03 30 39 30 39 6B 8E 0D 3F 00 00 00 00 50 02 F4 E6 F8 5D 00 00 66 06
+18 CF 5E 94 3D A3 B8 27 EB 9C E1 F3 08 00 45 00 00 28 00 00 40 00 40 06 B7 7A C0 A8 01 03 C0 A8 01 02 30 39 30 39 00 00 00 00 6B 8E 0D 42 50 14 00 00 53 38 00 00 00 00 00 00 00 00

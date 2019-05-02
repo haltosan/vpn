@@ -1,0 +1,99 @@
+##File Transfer##
+root@host:~/werk# python -m SimpleHTTPServer
+Serving HTTP on 0.0.0.0 port 8000 ...
+192.168.1.4 - - [10/Apr/2019 01:09:45] "GET / HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:09:57] "GET /cap.sh HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:10:25] "GET /cap.sh HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:10:48] "GET /clear.sh HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:11:00] "GET /config HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:11:15] "GET /craft.py HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:11:31] "GET /dencode.py HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:11:46] "GET /encode.py HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:12:01] "GET /fileLog.txt HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:12:16] "GET /it.sh HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:12:28] "GET /key HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:13:04] "GET /Listen.sh HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:13:46] "GET /payloadI HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:13:59] "GET /read.py HTTP/1.1" 200 -
+192.168.1.4 - - [10/Apr/2019 01:14:12] "GET /Send.sh HTTP/1.1" 200 -
+
+##Pi's end send/rec
+root@kali:~/work# ./Listen.sh
+waiting
+gotcha
+readed
+done; output to dencoded
+**payload
+cat: payload: No such file or directory
+**payloadI
+11 b1
+**key
+b
+**payloadO
+CC 6C
+root@kali:~/work# ./Send.sh
+encoded
+crafted
+sent
+**payload
+cc 6c
+**payloadI
+11 b1
+**key
+b
+
+##Host's end "
+root@host:~/werk# ./Send.sh
+encoded
+crafted
+sent
+**payload
+cc 6c
+**payloadI
+11 b1
+**key
+b
+root@host:~/werk# ./Listen.sh
+waiting
+gotcha
+readed
+done; output to dencoded
+**payload
+cc 6c
+**payloadI
+11 b1
+**key
+b
+**payloadO
+CC 6C
+
+##Pi send post dencoded fix
+root@kali:~/work# ./Send.sh
+encoded
+crafted
+sent
+**payload
+de f0
+**payloadI
+ab cd
+**key
+3
+
+#Host
+root@host:~/werk# ./Listen.sh 
+waiting
+gotcha
+readed
+done; output to dencoded
+**payload
+cc 6c
+**payloadI
+11 b1
+**key
+3
+**payloadO
+DE F0
+**dencoded
+ab cd
+
+

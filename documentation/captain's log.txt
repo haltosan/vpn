@@ -1,0 +1,41 @@
+stardate 3/6/19:
+ruled out packetforge
+can generate custom payloads on udp using packets.tcl
+
+need more precision on hexinject filters
+need to get packets sent and read correctly
+
+
+3/6/19 - 4/9/19:
+this was working on the bash scripts of crafting and capturing
+this was mostly done on just the client and done in small "batches"
+this created french work, extra french work, and extra (and as a result most of done)
+
+stardate 4/9/19:
+got all bash/python scripts working (not recorded) in done folder
+got the payload en/decryption working
+need to get the correct interfaces (wlan1/2 pi) to connect to AP [update: done]
+got both client/sever to connect
+got secure data transfer
+need to expand to sending packets
+
+[end]
+got seqence #s for tasks
+having trouble with "nn n" style payload; loss of 2nd cell
+
+
+stardate 4/17/19:
+got tasks working (payload header reader)
+was able to transfer files (client -> server)
+was able to fetch webpage over encrypted connection!!!
+todo-	send back webpage (encrypted)
+	potentially upgrade encryption (longer term goal)
+	make it an onion route system (longer term goal)
+
+
+stardate 4/20/19:
+finished tasks
+can fetch site completely
+can send back site
+issues with misformatted hex string (see end of 4/9/19)
+todo-	run a string sanitizer over payloadI before sending, crafting, etc.

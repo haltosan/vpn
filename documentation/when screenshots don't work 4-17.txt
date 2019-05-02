@@ -1,0 +1,65 @@
+#**Output with working task
+
+root@kali:~/work# ./Listen.sh 
+waiting
+gotcha
+readed
+done; output to dencoded
+**payload
+bc de f0 22
+**payloadI
+ab cd ef 11
+**key
+aa01
+**payloadO
+11 11
+**dencoded
+00 00
+started tasks
+('red: ', '00 00')
+('params: ', '00')
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: google.com
+('gotSite', 'google.com')
+
+
+#**Output from file fetch
+
+root@kali:~/work# ./Listen.sh 
+waiting
+gotcha
+readed
+done; output to dencoded
+**payload
+bc de f0 22
+**payloadI
+ab cd ef 11
+**key
+aa01
+**payloadO
+14 13
+**dencoded
+03 02
+started tasks
+('red: ', '03 02')
+('params: ', '02')
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    78  100    78    0     0  15600      0 --:--:-- --:--:-- --:--:-- 19500
+('got the file', '02')
+gotFile
+root@kali:~/work# cat gotFile
+according to all known laws of avaition, the bee should not be able to fly...
+
+#**Webserver output for files
+
+root@host:~# cd files/
+root@host:~/files# ls
+00  01  02
+root@host:~/files# python -m SimpleHTTPServer
+Serving HTTP on 0.0.0.0 port 8000 ...
+192.168.1.2 - - [17/Apr/2019 17:13:55] "GET /00 HTTP/1.1" 200 -
+192.168.1.2 - - [17/Apr/2019 20:53:49] "GET /00 HTTP/1.1" 200 -
+192.168.1.2 - - [17/Apr/2019 20:54:51] "GET /02 HTTP/1.1" 200 -
+
