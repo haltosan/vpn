@@ -1,0 +1,5 @@
+lhost 10.178.3.227
+lmac b0:10:41:63:73:eb
+rhost 10.178.0.1
+rmac ff:ff:ff:ff:ff:ff
+key 1
