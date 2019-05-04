@@ -1,7 +1,2 @@
 # vpn
-junior project vpn
-
-the system this is running on is a kali linux (for hexinject and similar tools)
-this was made for my junior project as a part of Math and Science Academy
-this (at the time) is not meant to be installed on other systems, 
-  but can go to other linux environmnets in the future
+This branch is past ideas for systems that have been changed/ditched. This is not a working project. Each dir is a seperate system that was designed a different way, and ended up in various stages of development.
