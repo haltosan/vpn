@@ -1,0 +1,24 @@
+* needed
+- created by run
+
+Send.sh
+Listen.sh
+encode.py
+craft.py
+read.py
+dencode.py
+clear.sh
+*payloadI
+*key
+*config
+-payloadO
+-dencoded
+-werk.pcap
+-payload
+-cap.hex
+-werk.pcap
+
+transfer.sh
+cap.sh
+lazy.sh
+-capl.hex
