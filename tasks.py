@@ -11,4 +11,9 @@ a.close()
 lst = red.split(" ")
 
 if(lst[0]=="02"):
-  print(dencode(lst[1:]))
+  html=(dencode(lst[1:]))
+  print("html got")
+  a=open("mySite.html","w+")
+  a.write("<!DOCTYPE html>\n"+html)
+  a.close()
+  os.system("firefox file:///root/werk/mySite.html")

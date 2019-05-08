@@ -1,4 +1,4 @@
-site = input("")
+site = str(input(""))
 def encode(string):
   for i in range(len(string)):
     yield(str(hex(ord(string[i])))).replace("0x","")
