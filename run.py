@@ -13,7 +13,22 @@ Send a POST request::
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import SocketServer
 
+def grabIndex():
+    a=open("index.html","r")
+    ret=a.read()
+    a.close()
+    return(ret)
+siteStuff=grabIndex()
+
+def grabPost():
+    a=open("post.html","r")
+    ret=a.read()
+    a.close()
+    return(ret)
+postSite=grabPost()
+
 class S(BaseHTTPRequestHandler):
+    global siteStuff, postSite
     try:
 	a=open("index.html","r")
 	siteStuff=a.read()
@@ -21,6 +36,15 @@ class S(BaseHTTPRequestHandler):
     except:
 	print("index not found")
 	siteStuff="<html>site is empty</html>"
+    print("got index")
+    try:
+	a=open("post.html","r")
+	postSite=a.read()
+	a.close()
+    except:
+	print("post not found")
+	postSite="<html>post response\ndata: "
+
 
     def _set_headers(self):
         self.send_response(200)
@@ -31,14 +55,16 @@ class S(BaseHTTPRequestHandler):
 	self._set_headers()
 
     def do_GET(self):
+	global siteStuff
         self._set_headers()
         self.wfile.write(siteStuff)
 
     def do_POST(self):
+	global postSite
         content_length = int(self.headers['Content-Length'])
 	post_data = self.rfile.read(content_length)
 	self._set_headers()
-	self.wfile.write("<html><body><h1>POST!</h1><p>with this data:  %s</p></body></html>"%post_data.encode())
+	self.wfile.write(postSite+post_data.encode()+"</html>")
 	print(post_data.encode())
 
 def run(server_class=HTTPServer, handler_class=S, port=80):
