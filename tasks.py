@@ -49,7 +49,23 @@ elif(red[:2]=="01"):
   a.close()
   os.system("echo "+encode(red1)+" >payloadI")
   os.system("python sanitize.py")
-  #print("encoded",encode(red1),red1)
+  os.system("sleep 1")
+  os.system("./Send.sh")
+elif(red[:2]=="02"):
+  entire=red.split(" ")[1:]
+  site=red[3:].split("ff")[0]
+  site=site[:len(site)-1]
+  data=red[3:].split("ff")[1][1:]
+  print(site,data,"{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}")
+  os.system("curl -d "+dencode(data.split(" "))+" --output gotSite "+dencode(site.split(" ")))
+  print("curl -d "+dencode(data.split(" "))+" --output gotSite "+dencode(site.split(" ")))
+  a=open("gotSite","r")
+  red1=a.read()
+  a.close()
+  #print("opendit")
+  os.system("echo "+encode(red1)+" >payloadI")
+  print("red1",encode(red1))
+  os.system("python sanitize.py")
   os.system("sleep 1")
   os.system("./Send.sh")
 
