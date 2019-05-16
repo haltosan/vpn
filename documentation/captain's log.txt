@@ -1,9 +1,8 @@
 stardate 3/6/19:
 ruled out packetforge
 can generate custom payloads on udp using packets.tcl
-
-need more precision on hexinject filters
-need to get packets sent and read correctly
+todo-	need more precision on hexinject filters [update: done, see screenshots 03-07]
+	need to get packets sent and read correctly [update: done during 'french' period]
 
 
 3/6/19 - 4/9/19:
@@ -14,23 +13,24 @@ this created french work, extra french work, and extra (and as a result most of 
 stardate 4/9/19:
 got all bash/python scripts working (not recorded) in done folder
 got the payload en/decryption working
-need to get the correct interfaces (wlan1/2 pi) to connect to AP [update: done]
+todo-	need to get the correct interfaces (wlan1/2 pi) to connect to AP [update: done with vnc]
 got both client/sever to connect
 got secure data transfer
-need to expand to sending packets
+todo-	need to expand to sending packets [update: done 4/17]
 
 [end]
 got seqence #s for tasks
-having trouble with "nn n" style payload; loss of 2nd cell
+having trouble with "nn n" style payload; loss of 2nd cell [update: fixed 4/20 with sanitize.py]
 
 
 stardate 4/17/19:
 got tasks working (payload header reader)
 was able to transfer files (client -> server)
+  -this shows i can fetch a webpage/webfile
 was able to fetch webpage over encrypted connection!!!
-todo-	send back webpage (encrypted)
+todo-	send back webpage (encrypted)  [update: done]
 	potentially upgrade encryption (longer term goal)
-	make it an onion route system (longer term goal)
+	make it an onion route system (longer term goal) [update: done 5/4 with 'curl --interface']
 
 
 stardate 4/20/19:
@@ -38,4 +38,50 @@ finished tasks
 can fetch site completely
 can send back site
 issues with misformatted hex string (see end of 4/9/19)
-todo-	run a string sanitizer over payloadI before sending, crafting, etc.
+todo-	run a string sanitizer over payloadI before sending, crafting, etc. [update 4/20-5/2 sometime: done in repl envr; update2: done in real envr] 
+
+
+stardate 5/2/19:
+got the input sanitized
+got it to open in browser!!!
+[Note: the client has to go back a page to escape the $%^$@ search token/metadata on certain sites]
+todo-	make the entire process look nicer (run a python handler for user ease) [update: done 5/4 with pretty.py]
+	have the server loop listen [update: done 5/2/19, seq 00, 01 for go, 00 for stop]
+	test on AP with internet
+[Note: make sure to configure 'config' and set the right int on server side]
+
+stardate 5/4/19:
+having issues with the server sending OR the client listening [update 5/4/19: FIXED!!!; needed to fix the config file]
+*NOTE TO SELF: DON'T TRUST 'ARP -D'!!! It gives bad macs for the config*
+got pretty.py to have a simple user interface (text based)
+got the system to work on a semi-onion route system (identical anonymization)
+todo-	get it to work connected to internet (#2)
+	get a listening device to show the connection (#3)
+	get a POST to contain 'sensitive' data (#1) [update: done 5/7]
+	maybe upgrade encryption (longer term goal)
+
+startdate 5/6/19:
+this meeting was dedicated to figuring out what each person would say and finalizing presentation
+the 'config' needed to be changed many many many... times
+the server files were backed up (on the flash) [update: 5/7 the files are now in the 'server' branch on github]
+same todo
+
+stardate 5/7/19:
+got the POST webserver done (users can 'login' to the site)
+got the server files backed up
+todo-	get it working connected to the internet (#2, not needed for presentation)
+	get a listening device to show data (#1 100% needed) [update: done 5/7]
+	maybe upgrade encryption (longer term goal)
+
+stardate 5/8//19:
+got the attacker device and setup
+todo-	practice entire setup with attacker (#2)
+	get a dedicated webserver for demonstation (#1) [update: 5/15, this can be done on my phone]
+	maybe make able to inject entire requests (longer term)
+	maybe upgrade encryption (longer term)
+
+stardate 5/15/19:
+got the POST function to work with the client/server system
+todo-	run through the entire demonstration (#1)
+	potentialy use a custom dns for the webserver(/vpnserver?) (#2)
+	maintain longer term goals from 5/8
