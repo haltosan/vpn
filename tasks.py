@@ -16,4 +16,4 @@ if(lst[0]=="02"):
   a=open("mySite.html","w+")
   a.write("<!DOCTYPE html>\n"+html)
   a.close()
-  os.system("firefox file:///root/werk/mySite.html")
+  os.system("firefox file:///root/work/vpn/mySite.html")

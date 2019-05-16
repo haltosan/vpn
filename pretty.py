@@ -9,9 +9,12 @@ a=open("payloadI","w")
 a.write("00 01")
 a.close()
 os.system("./Send.sh")
+
 while True:
   print "0) configure the application"
   print "1) request a webpage"
+  print "2) resend the last packet"
+  print "3) post data to a site"
   print "99) exit"
   user = input("> ")
   s="'"
@@ -35,6 +38,14 @@ while True:
 
   elif(user==1):
     os.system("./Site.sh")
+
+  elif(user==2):
+    os.system("./Send.sh")
+    os.system("./Listen.sh")
+
+  elif(user==3):
+    os.system("./Post.sh")
+    os.system("./Listen.sh")
 
   elif(user==99):
     #stop server listen
