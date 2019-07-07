@@ -27,6 +27,7 @@ The system requires no instilation (past the tools). To use the sysem, the confi
 * int - Interface (ex: eth0)
 The key file should also be changed. The key can be any hex value.
 This needs to be the same on the server.
+
 **Server**
 
 The server has to be setup as well. The only difference is 'int' is the listening interface, while 'curlInt' is the internet interface. It 
