@@ -11,7 +11,7 @@ a.close()
 os.system("./Send.sh")
 
 while True:
-  print "0) configure the application"
+  #print "0) configure the application"
   print "1) request a webpage"
   print "2) resend the last packet"
   print "3) post data to a site"
