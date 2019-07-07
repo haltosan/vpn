@@ -49,10 +49,15 @@ while True:
 
   elif(user==99):
     #stop server listen
-    a=open("payloadI","w")
-    a.write("00 00")
-    a.close()
-    os.system("./Send.sh")
-    print("done")
-    break
+    st = input("Stop the server? [Y/n]\n> ")
+    if(st=="n" or st=="N" or st=="no" or st=="No"):
+      print("done")
+      break
+    else:
+      a=open("payloadI","w")
+      a.write("00 00")
+      a.close()
+      os.system("./Send.sh")
+      print("done")
+      break
 
