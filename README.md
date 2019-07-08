@@ -41,9 +41,9 @@ To run the basic system, run the pretty script:
 ```
 python3 pretty.py
 ```
-The prompt to 'update priv' will chmod the bash files. This is needed for the system to work. Next, the client will send the 'keep 
-listening' signal to the server, so the server must be listening before running this script. On exit, the client can send the 'stop 
-listening' signal to the server. This stops the server and it then has to be manually set to listen again.
+The prompt to 'update priv' will chmod the bash files. This is needed for the system to work. Next, the client will send the 
+'keep listening' signal to the server, so the server must be listening before running this script. On exit, the client can send 
+the 'stop listening' signal to the server. This stops the server and it then has to be manually set to listen again.
 
 **Individual modules**
 
@@ -69,7 +69,17 @@ has similar anonymous capabilities to TOR in that eavsedroppers will identify th
 is requesting a service, not both. The encryption can be upgraded by anybody who feels it needs to be done (now using rot-n). 
 
 ## Extra fun/modification
+**Packets**
+
 Each request to the server has a unique task id. This task id identifies what sort of packet it is. The meaning of these task 
 id's can be seen in the *tasks.py* files on server and client. The task id is the first data in the packet (*00* 01 02). For 
 example, a packet reading `00 01` has a task id of 00. New task id's can be made, with functionality for the server or client, 
-depending on the need. 
+depending on the need. Next is the data. The data can be a hex encoded html file, or a command. For example, the packet `00 01` 
+has a task id of 00, data of 01. This task id is the listening signal, 01 meaning 'keep listening' (00 to stop). You have the 
+power of python, so anything is possible.
+
+**Encryption**
+
+To modify the encryption, modify the *encode.py* and *dencode.py* files on both sides, along with *key* if needed. The system is 
+an n-tier build, so most modifications will not interfere with overall functionality. The plan was to upgrade to AES, but the 
+deadline stopped this upgrade.
