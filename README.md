@@ -1,12 +1,14 @@
 # VPN
-This (as the name suggests) is a janky vpn. The project was built for my junior project (glorified science fair, but way harder). It has a 
-server side application and a client side application. The client side is the master branch, while the server side is the 'server' branch.
+This (as the name suggests) is a vpn. The project was built for my junior project. It has a server side application and a client 
+side application. The client side is the master branch, while the server side is the 'server' branch.
 
 ## Getting Started
 
 ### Prerequisites
-The system this is running on is a kali linux (clien and server). The purpose is because is contained many packet crafting and injecting 
-tools (what the system runs on). It can work on any other linux (haven't tried it on anything else than debian) with the proper tools.
+The system this is running on is a kali linux (client and server). The purpose is because is contained many packet crafting and 
+injecting 
+tools (what the system runs on). It can work on any other linux (haven't tried it on anything else than debian) with the proper
+tools.
 Needed tools for both client and server are:
 * ifconfig
 * python
@@ -19,7 +21,7 @@ Needed tools for both client and server are:
 ### Setup
 **Client**
 
-The system requires no instilation (past the tools). To use the sysem, the config file has to be properly setup.
+The system requires no instillation (past the tools). To use the system, the config file has to be properly setup.
 * lhost - Local host (client ip)
 * lmac - Local mac (client mac address)
 * rhost - Remote host (server ip)
@@ -30,9 +32,9 @@ This needs to be the same on the server.
 
 **Server**
 
-The server has to be setup as well. The only difference is 'int' is the listening interface, while 'curlInt' is the internet interface. It 
-is important to note they have to be different to work. The 'int' doesn't nessesarily have to be connected to the internet for it to work.
-Next, the server has to be listening. To do this, run the Listen script:
+The server has to be setup as well. The only difference is 'int' is the listening interface, while 'curlInt' is the internet 
+interface. It is important to note they have to be different to work. The 'int' doesn't necessarily have to be connected to the 
+internet for it to work. Next, the server has to be listening. To do this, run the Listen script:
 ```
 bash Listen.sh
 ```
@@ -55,7 +57,7 @@ To get a webpage:
 ```
 ./Site.sh
 ```
-To resend the last sent packet/custom made packet:
+To resend the last sent packet/custom-made packet:
 ```
 ./Send.sh
 ```
@@ -64,8 +66,8 @@ To listen for a server response:
 ./Listen.sh
 ```
 ## Strengths
-The system masqurades it's trafic as tcp, but the system actually uses udp. This prevents sessions hijacking. Also, the system 
-has similar anonymous capabilities to TOR in that eavsedroppers will identify that the user is on the network, or that *a* user 
+The system masquerades it's traffic as tcp, but the system actually uses udp. This prevents sessions hijacking. Also, the system 
+has similar anonymous capabilities to TOR in that eavesdroppers will identify that the user is on the network, or that *a* user 
 is requesting a service, not both. The encryption can be upgraded by anybody who feels it needs to be done (now using rot-n). 
 
 ## Extra fun/modification
