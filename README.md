@@ -64,7 +64,12 @@ To listen for a server response:
 ./Listen.sh
 ```
 ## Strengths
-**todo**
+The system masqurades it's trafic as tcp, but the system actually uses udp. This prevents sessions hijacking. Also, the system 
+has similar anonymous capabilities to TOR in that eavsedroppers will identify that the user is on the network, or that *a* user 
+is requesting a service, not both. The encryption can be upgraded by anybody who feels it needs to be done (now using rot-n). 
+
 ## Extra fun/modification
-Each request to the server has a unique task id. This task id identifies what sort of packet it is. 
-**to be continued**
+Each request to the server has a unique task id. This task id identifies what sort of packet it is. The meaning of these task 
+id's can be seen in the *tasks.py* files on server and client. The task id is the first data in the packet (*00* 01 02). For 
+example, a packet reading `00 01` has a task id of 00. New task id's can be made, with functionality for the server or client, 
+depending on the need. 
