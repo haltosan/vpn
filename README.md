@@ -16,7 +16,7 @@ Needed tools for both client and server are:
 * [hexinject](http://hexinject.sourceforge.net/)
 * hex2raw (part of hexinject)
 * packets.tcl (part of hexinject)
-* prettypacket (part of hexinject) - Not used in main system
+* prettypacket (part of hexinject) - Optional package I used in development
 
 ### Setup
 **Client**
