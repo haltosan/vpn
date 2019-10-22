@@ -27,6 +27,8 @@ The system requires no instillation (past the tools). To use the system, the con
 * rhost - Remote host (server ip)
 * rmac - Remote mac (server mac address)
 * int - Interface (ex: eth0)
+
+
 The key file should also be changed. The key can be any hex value.
 This needs to be the same on the server.
 
